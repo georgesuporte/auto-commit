@@ -1,0 +1,90 @@
+# Projeto Auto-Commit GIT / Auto-Versionamento (TAG)
+- [Requisitos](#requisitos)
+- [Configurações](#configurações)
+- [Vscode](#vscode)
+- [Scripts](#scripts)
+- [Pendências](#pendencias)
+
+
+## Requisitos 
+
+Para desenvolvimento e utilização do projeto são necessárias as seguintes dependências: 
+
+- [Git](https://git-scm.com/): Disponibiliza o Git na máquina, incluindo o utilitário Git Bash, usado para executar os scrips do projeto  
+- [Vscode](https://code.visualstudio.com/download): Visual Studio Code.
+- [Maven](https://maven.apache.org/): Controle de dependências para projetos em Java.
+
+## Configurações
+  1 Criar a pasta do vscode no projeto que deseja utilizar com o nome .vscode.
+  2 Criar o arquivo tasks.json e incluir o contéudo conforme tópico: [Vscode](#vscode).
+  3 Copiar pasta scripts para a raiz do projeto.
+  4 A execução das tasks será realizada através da opção terminal do vscode, opção executar tarefa.
+
+## Vscode
+
+Conteúdo arquivo tasks.json:
+
+ ```
+     {
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build-project", // Build project
+        "type": "shell",
+        "command": "scripts/build-project.sh",
+        "args": [],
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "git-push", // Create auto-commit and push
+        "type": "shell",
+        "command": "scripts/git-push.sh",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "git-deploy", // Deploy project and tag
+        "type": "shell",
+        "command": "scripts/git-deploy.sh",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "git-tag-push", // Create tag
+        "type": "shell",
+        "command": "scripts/git-tag-push.sh",
+        "args": [],
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": []
+      },
+    ]
+}
+ ```
+
+## Scripts
+```sh
+scripts
+    |------buil-project.sh (Build project)
+    |------git-deploy.sh (Deploy)
+    |------git-push.sh (Auto commit branchs(master, develop, release))
+    |------git-tag-push.sh (create tag)
+    |------git-util.sh (Archive util)
+```
+## Pendências 
+
+- Verificar existência da pasta .git;
+
